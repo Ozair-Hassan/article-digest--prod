@@ -5,7 +5,6 @@ import {
   useGetTranslateMutation,
   useLazyGetLanguagesQuery,
 } from '../services/translate'
-import { data } from 'autoprefixer'
 
 const Demo = () => {
   const [article, setArticle] = useState({
@@ -15,7 +14,6 @@ const Demo = () => {
   })
   const [allLanaguages, setAllLanguages] = useState([])
   const [targetLang, setTargetLang] = useState('ur')
-
   const [allArticles, setAllArticles] = useState([])
   const [copied, setCopied] = useState('')
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery()
@@ -29,13 +27,6 @@ const Demo = () => {
   useEffect(() => {
     handleLang()
   }, [])
-  // useEffect(() => {
-  //   console.log(allLanaguages)
-  // }, [allLanaguages])
-
-  useEffect(() => {
-    console.log(translateObj.isLoading)
-  }, [translateObj])
 
   useEffect(() => {
     const articlesFromLocalStorage = JSON.parse(
@@ -54,6 +45,7 @@ const Demo = () => {
       const updatedAllArticles = [newArticle, ...allArticles]
       setArticle(newArticle)
       setAllArticles(updatedAllArticles)
+      console.log(updatedAllArticles)
       localStorage.setItem('articles', JSON.stringify(updatedAllArticles))
     }
   }
@@ -70,17 +62,22 @@ const Demo = () => {
 
     if (data?.data.translatedText) {
       const newArticle = { ...article, translate: data.data.translatedText }
-      // const updatedAllArticles = [newArticle, ...allArticles]
-
+      const updatedAllArticles = [newArticle, ...allArticles]
       setArticle(newArticle)
-      // setAllArticles(updatedAllArticles)
-      // localStorage.setItem('articles', JSON.stringify(updatedAllArticles))
+      // const allLocalStorageArticles = JSON.parse(
+      //   localStorage.getItem('articles')
+      // )
+      // const presentTranslation = allLocalStorageArticles.map((item, index) => {
+      //   if (item.url === newArticle.url) return index
+      // })
+      // // console.log(allLocalStorageArticles[presentTranslation])
+      // // console.log(allLocalStorageArticles)
+      // allLocalStorageArticles[presentTranslation].translate =
+      //   newArticle.translate
+      // setAllArticles(allLocalStorageArticles)
+      // localStorage.setItem('articles', JSON.stringify(allLocalStorageArticles))
     }
   }
-
-  useEffect(() => {
-    // console.log(article)
-  }, [article])
 
   const handleCopy = (copyUrl) => {
     setCopied(copyUrl)
@@ -144,9 +141,146 @@ const Demo = () => {
         </div>
       </div>
       {/* Display results */}
+      <div className="grid grid-cols-1 l:grid-cols-3 md:grid-cols-3 gap-2 mt-10">
+        <div className=" p-4 ">
+          {' '}
+          <div className="my-10 max-w-full flex justify-center items-center ">
+            <div className="flex flex-col gap-3">
+              <h2 className="font-bold font-satoshi text-gray-300 text-xl mx-auto">
+                Article <span className="blue_gradient">Summary</span>
+              </h2>
+              <div className="summary_box w-[100%] ">
+                {isFetching ? (
+                  <div className="w-20 h-20 flex justify-center items-center">
+                    <img
+                      src={loader}
+                      alt="Loading..."
+                      className="w-10 h-10 object-contain"
+                    />
+                  </div>
+                ) : error ? (
+                  <p className="font-inter font-bold text-black text-center">
+                    Well, that wasn't supposed to happen....
+                    <br />
+                    <span className="font-satoshi font-normal text-gray-700">
+                      {error?.data?.error}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="font-inter font-medium text-sm text-gray-700">
+                    {article.summary || 'No summary available.'}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" p-4 my-auto ">
+          {' '}
+          <div className="flex flex-col gap-4 max-h-60 mx-6 ">
+            <h2 className="flex-1 font-bold font-satoshi text-gray-300 text-3xl mt-10 mx-auto">
+              Translate
+            </h2>
+            <div
+              className="copy_btn2 mx-auto "
+              onClick={handleSubmitTranslate}
+            >
+              <img
+                src={tr}
+                alt="copy_icon"
+                className="w-[60%] h-[60%] object-contain "
+              />
+            </div>
+            <div className="flex items-center py-0.5 border-transparent bg-slate-600/50 transition-all duration-200 overflow-hidden px-1.5 border-[2px] rounded-md mx-auto">
+              <div className="py-1 text-lg duration-200 md:text-xl text-slate-400 hover:text-slate-200 ">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 20 20"
+                  className="hover:cursor-pointer"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+
+              <select
+                name="language"
+                value={targetLang}
+                className="text-base text-slate-300 focus:outline-none bg-transparent  w-52 pl-1.5 ml-1 opacity-100 border-l-2 border-slate-600 transition-opacity duration-500"
+                onChange={(e) => {
+                  setTargetLang(e.target.value)
+                }}
+              >
+                {allLanaguages.map((item, index) => (
+                  <option
+                    key={index}
+                    value={item.code}
+                    className="text-base bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 text-slate-100 focus:text-slate-200 focus:outline-none pl-1.5 ml-1 opacity-100 border-l-2 border-slate-600 transition-opacity duration-500 backdrop"
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className=" p-4 ">
+          {' '}
+          <div className="my-10 max-w-full flex justify-center items-center ">
+            <div className="flex flex-col gap-3">
+              <h2 className="font-bold font-satoshi text-gray-300 text-xl mx-auto">
+                Article <span className="blue_gradient">Translation</span>
+              </h2>
+              <div className="summary_box w-[100%] ">
+                {translateObj.isLoading ? (
+                  <div className="w-20 h-20 flex justify-center items-center">
+                    <img
+                      src={loader}
+                      alt="Loading..."
+                      className="w-10 h-10 object-contain"
+                    />
+                  </div>
+                ) : error ? (
+                  <p className="font-inter font-bold text-black text-center">
+                    Well, that wasn't supposed to happen....
+                    <br />
+                    <span className="font-satoshi font-normal text-gray-700">
+                      {error?.data?.error}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="font-inter font-medium text-sm text-gray-700">
+                    {article.summary || 'No translation available.'}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="max-w-full flex flex-row justify-center items-center">
-        <div className="my-10 max-w-full flex justify-center items-center ">
-          {isFetching ? (
+        {/* Display results Summary */}
+
+        {/* Translate options */}
+
+        {/* Display results Translation */}
+      </div>
+    </section>
+  )
+}
+
+export default Demo
+
+{
+  /* {isFetching ? (
             <img
               src={loader}
               alt="Loading..."
@@ -173,58 +307,11 @@ const Demo = () => {
                 </div>
               </div>
             )
-          )}
-        </div>
+          )} */
+}
 
-        <div className="flex flex-row gap-4 max-h-60 mr-5">
-          <div className="text-white ml-5 flex flex-col">
-            <label htmlFor="language">Choose a language:</label>
-            <select
-              name="language"
-              value={targetLang}
-              className="bg-black"
-              onChange={(e) => {
-                setTargetLang(e.target.value)
-              }}
-            >
-              {allLanaguages.map((item, index) => (
-                <option
-                  key={index}
-                  value={item.code}
-                  className="item-center text-center"
-                >
-                  {item.name}
-                </option>
-              ))}
-
-              {/* <option value="af">Afrikaans</option>
-              <option value="rw">Kinyarwanda</option>
-              <option
-                value="ur"
-                defaultChecked
-              >
-                Urdu
-              </option>
-              <option value="en">English</option> */}
-            </select>
-          </div>
-
-          <div
-            className="copy_btn2 ml-5 "
-            onClick={handleSubmitTranslate}
-          >
-            <img
-              src={tr}
-              alt="copy_icon"
-              className="w-[40%] h-[40%] object-contain "
-            />
-          </div>
-          <h2 className="flex-1 font-bold font-satoshi text-gray-300 text-3xl mt-1">
-            Translate
-          </h2>
-        </div>
-
-        <div className="my-10 max-w-full flex justify-center items-center ">
+{
+  /* <div className="my-10 max-w-full flex justify-center items-center ">
           {translateObj.isLoading ? (
             <img
               src={loader}
@@ -253,10 +340,5 @@ const Demo = () => {
               </div>
             )
           )}
-        </div>
-      </div>
-    </section>
-  )
+        </div> */
 }
-
-export default Demo

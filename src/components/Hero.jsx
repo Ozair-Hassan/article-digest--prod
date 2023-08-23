@@ -12,9 +12,9 @@ const Hero = () => {
         <button
           type="button"
           onClick={() =>
-            window.open('https://github.com/Ozair-Hassan/readwise')
+            window.open('https://github.com/Ozair-Hassan/readwise-ai--prod')
           }
-          className="blue_btn"
+          className="black_btn"
         >
           {' '}
           GitHub
@@ -26,6 +26,7 @@ const Hero = () => {
         Enlighten Your Reading with <br className="max-md:hidden" />
         <span className="text_gradient_blue"> OpenAI GPT-4</span>
       </h1>
+      <br className="max-md:hidden" />
       <h2 className="desc">
         Boost Your Reading Skills with Readwise AI: Embark on a Journey of
         Knowledge by Effortlessly Summarizing and Translating Articles Using
