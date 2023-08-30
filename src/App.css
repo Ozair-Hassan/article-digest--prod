@@ -97,34 +97,32 @@
   -webkit-background-clip: text;
   background-clip: text;
 }
-.orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
-}
+
 .blue_gradient {
   @apply bg-gradient-to-r from-midnightblue-500 via-nightblue-600 to-nightblue-800 bg-clip-text text-transparent;
 }
 
 .desc {
-  @apply mt-5 text-lg text-midnightblue-600 sm:text-2xl text-center max-w-4xl;
+  @apply mt-5 text-lg text-slate-300 sm:text-2xl text-center max-w-4xl;
 }
 
 .url_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-md border border-slate-500 bg-gray-400 py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi text-black font-medium focus:border-black focus:outline-none focus:ring-0;
 }
 
 .submit_btn {
-  @apply hover:border-gray-700 hover:text-gray-700 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-sm font-medium text-gray-400;
+  @apply hover:border-black hover:text-black  absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-black/60 font-sans text-sm font-medium text-black/60;
 }
 
 .link_card {
-  @apply p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
+  @apply p-3 flex justify-start items-center flex-row bg-gray-400 border border-slate-500 gap-3 rounded-lg cursor-pointer;
 }
 
 .copy_btn {
-  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex flex-row justify-center items-center cursor-pointer;
+  @apply w-7 h-7 rounded-full bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex flex-row justify-center items-center cursor-pointer;
 }
 .copy_btn2 {
-  @apply w-10 h-10 rounded-full  bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex flex-row justify-center items-center cursor-pointer;
+  @apply w-10 h-10  flex flex-row justify-center items-center cursor-pointer;
 }
 
 .blue_gradient {
@@ -132,5 +130,5 @@
 }
 
 .summary_box {
-  @apply rounded-xl border border-gray-400 bg-gray-300 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
+  @apply rounded-lg border  border-gray-500 bg-slate-400 text-justify shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
 }

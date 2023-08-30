@@ -3,7 +3,7 @@ import { logoC } from '../assets'
 import { socialMedia, footerLinks } from '../constants'
 const Footer = () => (
   <section
-    className={`flex justify-center items-center   sm:py-10 py-6 flex-col w-full`}
+    className={`flex justify-center items-center  mt-24 sm:py-10 py-6 flex-col w-full`}
   >
     <div
       className={`flex justify-center items-start md:flex-row flex-col mb-4 w-full`}

@@ -90,7 +90,7 @@ const Demo = () => {
       {/* Search */}
       <div className="flex flex-col max-w-[50%] mx-auto w-full gap-2 ">
         <form
-          className="relative flex justify-center items-center"
+          className="relative flex justify-center items-center "
           onSubmit={handleSubmit}
         >
           <img
@@ -106,11 +106,11 @@ const Demo = () => {
               setArticle({ ...article, url: e.target.value })
             }}
             required
-            className="url_input peer"
+            className="url_input peer  "
           />
           <button
             type="submit"
-            className="submit_btn peer-focus:border-gray-700 peer-focus:text-gray-700"
+            className="submit_btn peer-focus:border-black peer-focus:text-black"
           >
             ↵
           </button>
@@ -141,17 +141,17 @@ const Demo = () => {
         </div>
       </div>
       {/* Display results */}
-      <div className="grid grid-cols-1 l:grid-cols-3 md:grid-cols-3 gap-2 mt-10">
-        <div className=" p-4 ">
+      <div className="grid grid-cols-1 lg:grid-cols-12 md:grid-cols-2 gap-2 mt-10 ">
+        <div className=" p-4  col-span-5 ">
           {' '}
           <div className="my-10 max-w-full flex justify-center items-center ">
             <div className="flex flex-col gap-3">
-              <h2 className="font-bold font-satoshi text-gray-300 text-xl mx-auto">
+              <h2 className="font-bold font-satoshi text-gray-300 text-3xl mx-auto">
                 Article <span className="blue_gradient">Summary</span>
               </h2>
               <div className="summary_box w-[100%] ">
                 {isFetching ? (
-                  <div className="w-20 h-20 flex justify-center items-center">
+                  <div className="w-20 h-20 flex justify-center items-center mx-auto">
                     <img
                       src={loader}
                       alt="Loading..."
@@ -159,15 +159,15 @@ const Demo = () => {
                     />
                   </div>
                 ) : error ? (
-                  <p className="font-inter font-bold text-black text-center">
+                  <p className="font-inter font-bold text-black text-center ">
                     Well, that wasn't supposed to happen....
                     <br />
-                    <span className="font-satoshi font-normal text-gray-700">
+                    <span className="font-satoshi font-normal text-black">
                       {error?.data?.error}
                     </span>
                   </p>
                 ) : (
-                  <p className="font-inter font-medium text-sm text-gray-700">
+                  <p className="font-inter font-medium text-sm text-black">
                     {article.summary || 'No summary available.'}
                   </p>
                 )}
@@ -175,12 +175,30 @@ const Demo = () => {
             </div>
           </div>
         </div>
-        <div className=" p-4 my-auto ">
+        <div className=" p-4 my-auto mx-auto col-span-2 ">
           {' '}
-          <div className="flex flex-col gap-4 max-h-60 mx-6 ">
-            <h2 className="flex-1 font-bold font-satoshi text-gray-300 text-3xl mt-10 mx-auto">
-              Translate
-            </h2>
+          <div className="flex flex-col gap-4 max-h-60 mx-auto my-auto ">
+            <div className="  ">
+              <select
+                placeholder="Select Language"
+                name="language"
+                value={targetLang}
+                className="bg-slate-300/90 rounded-sm text-black"
+                onChange={(e) => {
+                  setTargetLang(e.target.value)
+                }}
+              >
+                {allLanaguages.map((item, index) => (
+                  <option
+                    key={index}
+                    value={item.code}
+                    className="bg-slate-300/75 rounded-sm text-black"
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div
               className="copy_btn2 mx-auto "
               onClick={handleSubmitTranslate}
@@ -191,57 +209,18 @@ const Demo = () => {
                 className="w-[60%] h-[60%] object-contain "
               />
             </div>
-            <div className="flex items-center py-0.5 border-transparent bg-slate-600/50 transition-all duration-200 overflow-hidden px-1.5 border-[2px] rounded-md mx-auto">
-              <div className="py-1 text-lg duration-200 md:text-xl text-slate-400 hover:text-slate-200 ">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 20 20"
-                  className="hover:cursor-pointer"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-
-              <select
-                name="language"
-                value={targetLang}
-                className="text-base text-slate-300 focus:outline-none bg-transparent  w-52 pl-1.5 ml-1 opacity-100 border-l-2 border-slate-600 transition-opacity duration-500"
-                onChange={(e) => {
-                  setTargetLang(e.target.value)
-                }}
-              >
-                {allLanaguages.map((item, index) => (
-                  <option
-                    key={index}
-                    value={item.code}
-                    className="text-base bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 text-slate-100 focus:text-slate-200 focus:outline-none pl-1.5 ml-1 opacity-100 border-l-2 border-slate-600 transition-opacity duration-500 backdrop"
-                  >
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
           </div>
         </div>
-        <div className=" p-4 ">
+        <div className=" p-4  col-span-5">
           {' '}
           <div className="my-10 max-w-full flex justify-center items-center ">
             <div className="flex flex-col gap-3">
-              <h2 className="font-bold font-satoshi text-gray-300 text-xl mx-auto">
+              <h2 className="font-bold font-satoshi text-gray-300 text-3xl mx-auto">
                 Article <span className="blue_gradient">Translation</span>
               </h2>
               <div className="summary_box w-[100%] ">
                 {translateObj.isLoading ? (
-                  <div className="w-20 h-20 flex justify-center items-center">
+                  <div className="w-20 h-20 flex justify-center items-center mx-auto">
                     <img
                       src={loader}
                       alt="Loading..."
@@ -252,13 +231,13 @@ const Demo = () => {
                   <p className="font-inter font-bold text-black text-center">
                     Well, that wasn't supposed to happen....
                     <br />
-                    <span className="font-satoshi font-normal text-gray-700">
+                    <span className="font-satoshi font-normal text-black">
                       {error?.data?.error}
                     </span>
                   </p>
                 ) : (
-                  <p className="font-inter font-medium text-sm text-gray-700">
-                    {article.summary || 'No translation available.'}
+                  <p className="font-inter font-medium text-sm text-black">
+                    {article.translate || 'No translation available.'}
                   </p>
                 )}
               </div>
@@ -266,79 +245,8 @@ const Demo = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-full flex flex-row justify-center items-center">
-        {/* Display results Summary */}
-
-        {/* Translate options */}
-
-        {/* Display results Translation */}
-      </div>
     </section>
   )
 }
 
 export default Demo
-
-{
-  /* {isFetching ? (
-            <img
-              src={loader}
-              alt="Loading..."
-              className="w-20 h-20 object-contain"
-            />
-          ) : error ? (
-            <p className="font-inter font-bold text-black text-center">
-              Well that wasn't supposed to happen....
-              <br />
-              <span className="font-satoshi font-normal text-gray-700">
-                {error?.data?.error}
-              </span>
-            </p>
-          ) : (
-            article.summary && (
-              <div className="flex flex-col gap-3">
-                <h2 className="font-bold font-satoshi text-gray-300 text-xl">
-                  Article <span className="blue_gradient">Summary</span>
-                </h2>
-                <div className="summary_box ">
-                  <p className="font-inter font-medium text-sm text-gray-700">
-                    {article.summary}
-                  </p>
-                </div>
-              </div>
-            )
-          )} */
-}
-
-{
-  /* <div className="my-10 max-w-full flex justify-center items-center ">
-          {translateObj.isLoading ? (
-            <img
-              src={loader}
-              alt="Loading..."
-              className="w-20 h-20 object-contain"
-            />
-          ) : error ? (
-            <p className="font-inter font-bold text-black text-center">
-              Well that wasn't supposed to happen....
-              <br />
-              <span className="font-satoshi font-normal text-gray-700">
-                {error?.data?.error}
-              </span>
-            </p>
-          ) : (
-            article.translate && (
-              <div className="flex flex-col gap-3">
-                <h2 className="font-bold font-satoshi text-gray-300 text-xl mt-5">
-                  Article <span className="blue_gradient">Translation</span>
-                </h2>
-                <div className="summary_box">
-                  <p className="font-inter font-medium text-sm text-gray-700">
-                    {article.translate}
-                  </p>
-                </div>
-              </div>
-            )
-          )}
-        </div> */
-}
