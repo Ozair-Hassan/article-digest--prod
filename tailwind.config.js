@@ -18,6 +18,10 @@ export default {
           800: '#000033',
           // Add more shades if needed
         },
+        cream: {
+          600: '#C9AC93',
+          700: '#cdbaa5',
+        },
       },
     },
     screens: {

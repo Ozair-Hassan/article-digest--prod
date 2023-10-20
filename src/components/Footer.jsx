@@ -3,7 +3,7 @@ import { logoC } from '../assets'
 import { socialMedia, footerLinks } from '../constants'
 const Footer = () => (
   <section
-    className={`flex justify-center items-center  mt-24 sm:py-10 py-6 flex-col w-full`}
+    className={`flex justify-center items-center  mt-32 sm:py-10 py-6 flex-col w-full`}
   >
     <div
       className={`flex justify-center items-start md:flex-row flex-col mb-4 w-full`}
@@ -12,7 +12,7 @@ const Footer = () => (
         <img
           src={logoC}
           alt="ReadWise AI"
-          className="w-[266px] h-[135px] object-contain"
+          className="w-[300px] h-[200px] object-contain"
         />
         <p
           className={`font-satoshi font-normal text-gray-300 text-[18px] leading-[30.8px] mt-8  max-w-[410px] `}
@@ -50,7 +50,7 @@ const Footer = () => (
 
     <div className="w-full flex justify-between items-center md:flex-row flex-col pt-6 border-t-[1px] border-t-[#3F3E45]">
       <p className="font-poppins font-normal text-center text-[18px] leading-[27px] text-white">
-        Copyright Ⓒ 2023 ReadWise AI. All Rights Reserved.{' '}
+        Copyright Ⓒ 2023 Article Digest. All Rights Reserved.{' '}
         <br className="sm:block hidden" />
         <span className="text-[14px] text-left block">
           Coded By Ozair Hassan
