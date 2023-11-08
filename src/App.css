@@ -15,6 +15,29 @@
   padding: 120px 24px 160px 24px;
   pointer-events: none;
 }
+* {
+  scroll-behavior: smooth;
+}
+
+/* Hide the scrollbar by default */
+body::-webkit-scrollbar {
+  width: 12px;
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #121e2d 0%);
+}
+
+/* Show the scrollbar when the body has a class 'scrolling' */
+body.scrolling::-webkit-scrollbar {
+  width: 12px;
+}
+
+body.scrolling::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+}
+
+/* Optional: Add smooth transitions */
+::-webkit-scrollbar-thumb {
+  transition: background 0.2s ease;
+}
 
 .main:before {
   background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #121e2d 0%);
