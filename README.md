@@ -1,8 +1,36 @@
-# React + Vite
+Article Digest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+About the Project
 
-Currently, two official plugins are available:
+Article Digest is a web application designed to enhance reading experiences by summarizing and translating articles. Utilizing the power of OpenAI's GPT-4, it offers users a quick and efficient way to comprehend and access content in multiple languages.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies Used
+
+React: A JavaScript library for building user interfaces.
+Redux Toolkit: A toolset for efficient Redux development.
+Vite: A modern frontend build tool.
+Tailwind CSS: A utility-first CSS framework for rapid UI development.
+RapidAPI: An API marketplace for building and connecting to APIs.
+
+
+Getting Started
+To get a local copy up and running, follow these simple steps.
+
+Prerequisites
+
+npm install npm@latest -g
+
+Installation
+
+git clone https://github.com/Ozair-Hassan/article-digest--prod.git
+
+Install NPM packages
+
+npm install
+
+Running the Application
+
+npm run dev
+
+
+Open http://localhost:3000 to view it in the browser.
